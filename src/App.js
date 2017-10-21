@@ -58,36 +58,28 @@ class WeatherCont extends Component {
     const weaData = this.state.weaData;
 
     if(!weaData) return <div>going..</div>
-    const J = JSON.stringify;
+    
     return  <ShowContent 
-              sky={J(weaData.weather[0].description)}
-              city={J(weaData.name)}
-              icon={J(weaData.weather[0].icon)}
-              temper={J(weaData.main.temp)}
-              pressure={J(weaData.main.pressure)}
-              wiind={J(weaData.wind.speed)}
-              humidity={J(weaData.main.humidity)}
+              sky={weaData.weather[0].description}
+              city={weaData.name}
+              icon={weaData.weather[0].icon}
+              temper={weaData.main.temp}
+              pressure={weaData.main.pressure}
+              wiind={weaData.wind.speed}
+              humidity={weaData.main.humidity}
       />
   }
 }
 
 class ShowContent extends Component {
-
   render() {
     const { sky, city, icon, temper, pressure, humidity, wiind } = this.props;
-    let sk   = sky.replace( /["']+/g, '' ),
-        cit  = city.replace( /['"]+/g, '' ),
-        ico  = icon.replace( /['"]+/g, '' ),
-        wind = wiind.replace( /['"]+/g, '' ),
-        temp = temper.replace( /['"]+/g, '' ),
-        pres = pressure.replace( /['"]+/g, '' ),
-        humi = humidity.replace( /['"]+/g, '' );
     return <article className="displaying">
-              <img src={ico} alt="ico" />
-              <h3> {sk} in {cit}  </h3>
-              <p className="temp"><i className="fa fa-thermometer-empty" aria-hidden="true"></i> {temp}° C</p>
-              <p><i className="fa fa-flag-o" aria-hidden="true"></i> {wind}m/s</p>
-              <p><i className="fa fa-tint" aria-hidden="true"></i> {humi}%</p>
+              <img src={icon} alt="ico" />
+              <h3> {sky} in {city}  </h3>
+              <p className="temp"><i className="fa fa-thermometer-empty" aria-hidden="true"></i> {temper}° C</p>
+              <p><i className="fa fa-flag-o" aria-hidden="true"></i> {wiind}m/s</p>
+              <p><i className="fa fa-tint" aria-hidden="true"></i> {humidity}%</p>
     </article>
   }
 }
