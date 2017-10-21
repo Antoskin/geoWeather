@@ -59,7 +59,6 @@ class WeatherCont extends Component {
 
     if(!weaData) return <div>going..</div>
     const J = JSON.stringify;
-    //{JSON.stringify(weaData)}
     return  <ShowContent 
               sky={J(weaData.weather[0].description)}
               city={J(weaData.name)}
